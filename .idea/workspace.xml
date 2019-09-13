@@ -5,11 +5,7 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/catch_the_drop/com/kingxfshame/GameWindow$GameField.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/catch_the_drop/com/kingxfshame/GameWindow$GameField.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/catch_the_drop/com/kingxfshame/GameWindow.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/catch_the_drop/com/kingxfshame/GameWindow.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/catch_the_drop/com/kingxfshame/drop.png" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/catch_the_drop/com/kingxfshame/drop.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/catch_the_drop/com/kingxfshame/gameover.png" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/catch_the_drop/com/kingxfshame/gameover.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/kingxfshame/GameWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/kingxfshame/GameWindow.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/kingxfshame/drop.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/kingxfshame/drop.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/kingxfshame/gameover.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/kingxfshame/gameover.png" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -24,6 +20,7 @@
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="restartRequiresConfirmation" value="false" />
     <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
   </component>
@@ -74,7 +71,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
