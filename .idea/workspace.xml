@@ -2,10 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="380232ed-06dc-472a-a58c-667d7264cb12" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/com/kingxfshame/entry.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/catch_the_drop.iml" beforeDir="false" afterPath="$PROJECT_DIR$/catch_the_drop.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/catch_the_drop/com/kingxfshame/GameWindow$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/catch_the_drop/com/kingxfshame/GameWindow$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/catch_the_drop/com/kingxfshame/GameWindow$GameField.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/catch_the_drop/com/kingxfshame/GameWindow$GameField.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/catch_the_drop/com/kingxfshame/GameWindow.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/catch_the_drop/com/kingxfshame/GameWindow.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/catch_the_drop/com/kingxfshame/mysql-connector-java-5.1.18-bin.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/catch_the_drop/com/kingxfshame/mysql-connector-java-8.0.11.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/catch_the_drop/com/kingxfshame/protobuf-java-2.6.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/catch_the_drop/com/kingxfshame/test.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/kingxfshame/GameWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/kingxfshame/GameWindow.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -28,7 +34,10 @@
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/mysql-connector-java-8.0.11.jar!/" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
     <property name="restartRequiresConfirmation" value="false" />
     <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
   </component>

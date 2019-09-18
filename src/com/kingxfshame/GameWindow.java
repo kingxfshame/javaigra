@@ -1,6 +1,8 @@
 package com.kingxfshame;
 
-
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.time.LocalTime;
 import java.sql.*;
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -9,6 +11,10 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.Console;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 public class GameWindow extends JFrame {
     private static GameWindow game_window;
@@ -33,13 +39,22 @@ public class GameWindow extends JFrame {
 	private static double mousepositionY = 0;
 	private static int droppos_left = -1;
 	private static float delta_time = 0;
+	private static boolean drawRecords = false;
+	private static ArrayList<String> recordLast = new ArrayList<String>();
+	private static entry nameEntry;
 
+	private static String url = "jdbc:mysql://localhost/gamedrop?useLegacyDatetimeCode=false&serverTimezone=Europe/Helsinki";
+	private static String username = "root";
+	private static String password = "";
 
-
-
-
+	private static int bestscore = 0;
+	private static database db;
+	private static boolean isRecorded = false;
+	private static String player_username = "";
 
     public static void main(String[] args) throws IOException {
+    	db = new database(url,username,password);
+    	db.init();
     	bg = ImageIO.read(GameWindow.class.getResourceAsStream("bg.jpg"));
 		go = ImageIO.read(GameWindow.class.getResourceAsStream("gameover.png"))
 				.getScaledInstance(300,200,Image.SCALE_DEFAULT);
@@ -48,13 +63,6 @@ public class GameWindow extends JFrame {
 		restart = ImageIO.read(GameWindow.class.getResourceAsStream("restart.png")).getScaledInstance(50,50,Image.SCALE_DEFAULT);
 
 		//sql
-		try {
-			databaseConnection();
-			databasesql();
-		}
-		catch (SQLException asdf){
-
-		}
 		//game
 	game_window = new GameWindow(); // создали объект
 	game_window.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE); // при закрытии программы будет завершаться код
@@ -110,6 +118,7 @@ public class GameWindow extends JFrame {
 					float restart_right = restart_left + restart.getWidth(null);
 					float restart_bottom = restart_top + restart.getHeight(null);
 					boolean isRestart = x>= restart_left && x <= restart_right && y>= restart_top && y <= restart_bottom;
+
 					if (isRestart){
 						end = false;
 						score = 0;
@@ -117,12 +126,38 @@ public class GameWindow extends JFrame {
 						drop_top= -100;
 						drop_v = 200;
 						score++;
+						isRecorded = false;
+						recordLast = db.getRecords();
+						drawRecords = true;
 						game_window.setTitle("Score : " + score);
 					}
 				}
 			}
 		}
 	}); // Отслеживание нажатие кнопки мыши
+		nameEntry = new entry();
+		game_window.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				super.keyTyped(e);
+			}
+
+			@Override
+			public void keyPressed(KeyEvent e) {
+				nameEntry.keyPress(e);
+				if(nameEntry.isActive && !isRecorded){
+					if(e.getKeyCode() == KeyEvent.VK_ENTER){
+						db.addRecord(nameEntry.text,score);
+						isRecorded = true;
+					}
+				}
+			}
+
+			@Override
+			public void keyReleased(KeyEvent e) {
+				super.keyReleased(e);
+			}
+		});
 
 	game_window.add(game_field);
 	game_window.setVisible(true);
@@ -142,14 +177,27 @@ public class GameWindow extends JFrame {
 		g.drawImage(bg,0,0,null);
 
 		droprandom();
+		if(drawRecords){
+			for(int i = 0; i < recordLast.size() ; i++){
+				g.drawString(recordLast.get(i),200,25+25*i);
+				;}
 
+		}
 
 		g.drawImage(drop,(int)drop_left,(int)drop_top,null);
 
 		if(drop_top > game_window.getHeight()){
+
 			g.drawImage(go,280,120,null);
-			g.drawImage(restart,(int)restart_left,(int)restart_top,null);}
+			g.drawImage(restart,(int)restart_left,(int)restart_top,null);
 			end = true;
+			nameEntry.isActive = true;
+			nameEntry.update(g);
+		}
+
+
+		nameEntry.update(g);
+
 	}
 
 	private static void gamepause(){
@@ -195,6 +243,7 @@ public class GameWindow extends JFrame {
 			else droppos_left = 1;
 		}
 
+
 	}
 
 
@@ -206,34 +255,8 @@ public class GameWindow extends JFrame {
     		repaint();
 		}
 	}
-	private static void databaseConnection()throws SQLException{
-
-		try{
-			Class.forName("com.mysql.cj.jdbc.Driver").getDeclaredConstructor().newInstance();
-			System.out.println("Connection succesfull!");
-		}
-		catch(Exception ex){
-			System.out.println("Connection failed...");
-
-			System.out.println(ex);
-		}
-	}
-	private static void databasesql()throws  SQLException{
-		String connectionUrl =
-				"jdbc:sqlserver://localhost;"
-						+ "database=mysql;"
-						+ "user=root@localhost;"
-						+ "password=;"
-						+ "encrypt=true;"
-						+ "trustServerCertificate=false;"
-						+ "loginTimeout=30;";
-
-		try (Connection connection = DriverManager.getConnection(connectionUrl);) {
-			System.out.println("success");
-		}
-		// Handle any errors that may have occurred.
-		catch (SQLException e) {
-			e.printStackTrace();
-		}
+	private static void checkusername(){
+		player_username = JOptionPane.showInputDialog("Your Username : ");
+		System.out.println(player_username);
 	}
 }
