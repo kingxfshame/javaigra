@@ -52,6 +52,10 @@ public class GameWindow extends JFrame {
 	private static boolean isRecorded = false;
 	private static String player_username = "";
 
+	private static boolean message = false;
+
+	private static Drop gamedrop;
+
     public static void main(String[] args) throws IOException {
     	db = new database(url,username,password);
     	db.init();
@@ -61,7 +65,7 @@ public class GameWindow extends JFrame {
 		drop = ImageIO.read(GameWindow.class.getResourceAsStream("drop.png"))
 				.getScaledInstance(drop_width,drop_height,Image.SCALE_DEFAULT);
 		restart = ImageIO.read(GameWindow.class.getResourceAsStream("restart.png")).getScaledInstance(50,50,Image.SCALE_DEFAULT);
-
+		gamedrop = new Drop(drop_width,drop_height, drop_top,drop_left,drop_v);
 		//sql
 		//game
 	game_window = new GameWindow(); // создали объект
@@ -129,6 +133,7 @@ public class GameWindow extends JFrame {
 						isRecorded = false;
 						recordLast = db.getRecords();
 						drawRecords = true;
+						message = false;
 						game_window.setTitle("Score : " + score);
 					}
 				}
@@ -139,7 +144,7 @@ public class GameWindow extends JFrame {
 		game_window.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyTyped(KeyEvent e) {
-				super.keyTyped(e);
+
 			}
 
 			@Override
@@ -155,7 +160,7 @@ public class GameWindow extends JFrame {
 
 			@Override
 			public void keyReleased(KeyEvent e) {
-				super.keyReleased(e);
+
 			}
 		});
 
@@ -176,20 +181,23 @@ public class GameWindow extends JFrame {
     	drop_top = drop_top + drop_v * delta_time;
 		g.drawImage(bg,0,0,null);
 
-		droprandom();
+
+
 		if(drawRecords){
 			for(int i = 0; i < recordLast.size() ; i++){
 				g.drawString(recordLast.get(i),200,25+25*i);
 				;}
 
 		}
-
+		droprandom();
 		g.drawImage(drop,(int)drop_left,(int)drop_top,null);
 
 		if(drop_top > game_window.getHeight()){
 
 			g.drawImage(go,280,120,null);
 			g.drawImage(restart,(int)restart_left,(int)restart_top,null);
+			messagebox();
+
 			end = true;
 			nameEntry.isActive = true;
 			nameEntry.update(g);
@@ -197,6 +205,25 @@ public class GameWindow extends JFrame {
 
 
 		nameEntry.update(g);
+
+	}
+	private static void messagebox(){
+		if(message == false){
+			try {
+				JFrame frame = new JFrame();
+				frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+				String name = JOptionPane.showInputDialog("Enter Name");
+				frame.setVisible(false);
+				System.out.println(name);
+				message = true;
+			}
+			catch (Exception ex){
+				ex.getMessage();
+			}
+		}
+		else{
+
+		}
 
 	}
 

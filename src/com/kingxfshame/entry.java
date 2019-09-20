@@ -36,7 +36,6 @@ public class entry {
     }
     public void keyPress(KeyEvent e){
         if(!isActive)return;
-        text += e.getKeyChar();
         try{
         if(e.getKeyCode() == KeyEvent.VK_BACK_SPACE) text = text.substring(0,text.length() -1);
         else text+= e.getKeyChar();

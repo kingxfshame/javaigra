@@ -16,17 +16,18 @@ public class database {
 
     public void addRecord(String name, int score) {
         try {
-            String sql = String.format("INSERT INTO game(name,score,date) VALUSES(%s,%d)", name, score);
+            String sql = String.format("INSERT INTO game(name,score) VALUES('%s',%d)", name, score);
             Statement statement = connection.createStatement();
-
+            statement.executeUpdate(sql);
+            statement.close();
         } catch (Exception ex) {
-            ex.getMessage();
+            ex.printStackTrace();
         }
 
     }
 
     public ArrayList<String> getRecords() {
-        ArrayList<String> result = new ArrayList<>();
+        ArrayList<String> result = new ArrayList<String>();
         try {
             Statement st = connection.createStatement();
             ResultSet res = st.executeQuery("SELECT * from game");
@@ -42,6 +43,7 @@ public class database {
         catch (Exception ex) {
 
         }
+        return result;
     }
     public void init(){
         try {
