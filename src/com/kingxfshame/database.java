@@ -5,13 +5,14 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class database {
-    public String host, user, password;
+    public String host, user, password,username;
     public Connection connection;
 
-    public database(String host, String user, String password) {
+    public database(String host, String user, String password,String username) {
         this.host = host;
         this.user = user;
         this.password = password;
+        this.username = username;
     }
 
     public void addRecord(String name, int score) {

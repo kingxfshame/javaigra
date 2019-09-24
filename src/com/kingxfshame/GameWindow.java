@@ -57,7 +57,7 @@ public class GameWindow extends JFrame {
 	private static Drop gamedrop;
 
     public static void main(String[] args) throws IOException {
-    	db = new database(url,username,password);
+    	db = new database(url,username,password,player_username);
     	db.init();
     	bg = ImageIO.read(GameWindow.class.getResourceAsStream("bg.jpg"));
 		go = ImageIO.read(GameWindow.class.getResourceAsStream("gameover.png"))
@@ -211,11 +211,19 @@ public class GameWindow extends JFrame {
 		if(message == false){
 			try {
 				JFrame frame = new JFrame();
-				frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-				String name = JOptionPane.showInputDialog("Enter Name");
+				frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+				player_username = JOptionPane.showInputDialog("Enter Name(3+ symbol)");
 				frame.setVisible(false);
-				System.out.println(name);
+				if(player_username.length() <= 3){
+
+				}
+				else{
+					db.addRecord(player_username,score);
+				}
 				message = true;
+				frame = null;
+				frame.dispose();
+				System.out.println(player_username);
 			}
 			catch (Exception ex){
 				ex.getMessage();
